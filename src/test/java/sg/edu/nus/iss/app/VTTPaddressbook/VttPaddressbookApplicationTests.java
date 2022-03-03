@@ -12,9 +12,9 @@ import sg.edu.nus.iss.app.VTTPaddressbook.controller.AddressBookController;
 class VttPaddressbookApplicationTests {
 	@Autowired
 	private AddressBookController controller;
+
 	@Test
 	void contextLoads() {
-		assertThat(controller); //confirm that controller can be instantiated
+		assertThat(controller).isNotNull(); // confirm that controller can be instantiated
 	}
-
 }

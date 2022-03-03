@@ -19,26 +19,26 @@ import sg.edu.nus.iss.app.VTTPaddressbook.util.AddressBook;
 public class AddressBookController {
     private Logger logger = Logger.getLogger(AddressBookController.class.getName());
 
-    @Autowired
-    private ApplicationArguments applicationArguments; 
+    @Autowired // looks for beans of type then name (if multiple of same type)
+    private ApplicationArguments applicationArguments;
 
     @GetMapping("/")
-    public String contactForm(Model model){
+    public String contactForm(Model model) {
         logger.log(Level.INFO, "Show the contact form");
         model.addAttribute("contact", new Contact());
         return "contact";
     }
 
     @GetMapping("/getContact/{contactId}")
-    public String getContact(Model model, @PathVariable(value = "contactId") String contactId){
-        logger.log(Level.INFO, "contactId "+contactId);
+    public String getContact(Model model, @PathVariable(value = "contactId") String contactId) {
+        logger.log(Level.INFO, "contactId " + contactId);
         AddressBook book = new AddressBook();
         book.getContactById(model, contactId, applicationArguments);
         return "showContact";
     }
 
-    @PostMapping("/contact")//name for what the page defines
-    public String contactSubmit(@ModelAttribute Contact contact, Model model){
+    @PostMapping("/contact") // name for what the page defines
+    public String contactSubmit(@ModelAttribute Contact contact, Model model) {
         logger.log(Level.INFO, "ID " + contact.getId());
         logger.log(Level.INFO, "Name " + contact.getName());
         logger.log(Level.INFO, "Phone " + contact.getPhone());
